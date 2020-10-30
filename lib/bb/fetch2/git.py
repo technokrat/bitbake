@@ -596,7 +596,10 @@ class Git(FetchMethod):
         Return the repository URL
         """
         if ud.user:
-            username = ud.user + '@'
+            username = ud.user
+            if ud.pswd:
+                username += ":" + ud.pswd
+            username += "@"
         else:
             username = ""
         return "%s://%s%s%s" % (ud.proto, username, ud.host, ud.path)
